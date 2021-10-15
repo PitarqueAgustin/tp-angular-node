@@ -1,0 +1,33 @@
+.card-product{
+    height: 400px;
+    width: 300px;
+    padding: 10px;
+    background-color: #515151;
+    border-bottom: 2px solid #b212bf;
+    border-radius: 5px;
+    display: grid;
+    grid-template-rows: 60% 40%;
+    margin: auto;
+}
+
+.card-product img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-product > div{
+    color: #eee;
+}
+
+.card-product > div > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-product > div > div span{
+    color: #b212bf;
+    font-size: 1.2em;
+    /* text-decoration: underline 3px #b212bf; */
+}
