@@ -6,4 +6,6 @@
 
 body{
     background-color: rgb(31, 30, 34);
+    background-image: url('./assets/images/background3.png');
+    background-size: cover;
 }
