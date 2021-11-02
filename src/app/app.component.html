@@ -1,8 +1,13 @@
 <app-menu></app-menu>
 
 <div class="box-products">
-    <app-product></app-product>
-    <app-product></app-product>
-    <app-product></app-product>
-    <app-product></app-product>
+    <div *ngFor="let item of data">
+        <app-product 
+            [name]="item.name"
+            [price]="item.price"
+            [category]="item.category"
+            [image]="item.image"
+            [description]="item.description"
+        ></app-product>
+    </div>
 </div>

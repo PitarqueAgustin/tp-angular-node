@@ -1,5 +1,5 @@
 .card-product{
-    height: 400px;
+    height: 450px;
     width: 300px;
     padding: 10px;
     background-color: #515151;
@@ -28,7 +28,7 @@
 }
 
 .card-product > div > div span{
-    color: #b212bf;
+    color: #b84dc2;
     font-size: 1.2em;
     /* text-decoration: underline 3px #b212bf; */
 }
