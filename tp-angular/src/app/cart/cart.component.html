@@ -1,0 +1,30 @@
+<div class="box-table">
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Categoria</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of products">
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.category}}</td>
+                <td>${{item.price}}</td>
+                <td>{{item.quantity}}</td>
+                <td><a href="">Eliminar</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="total">
+        <h4>Total:</h4> <h3>${{total}}</h3>
+    </div>
+</div>
+
+<div class="box-btns">
+    <button (click)="deleteCart()">Vaciar Carrito</button>
+    <button (click)="pay()">Realizar Compra</button>
+</div>

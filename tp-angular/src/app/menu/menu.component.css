@@ -21,16 +21,16 @@ nav ul{
     column-gap: 20px;
 }
 
-nav ul li{
+nav ul li a{
     cursor: pointer;
     color: #515151;
 }
 
-nav ul li:hover{
+nav ul li a:hover{
     color: #b212bf;
 }
 
-nav ul li.activo{
+nav ul li a.activo{
     color: #b212bf;
 }
 

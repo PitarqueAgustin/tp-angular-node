@@ -1,0 +1,13 @@
+<div class="box-products">
+    <div *ngFor="let item of data">
+        <app-product 
+            (productEvent)=receiveProduct($event)
+            [id]="item.id"
+            [name]="item.name"
+            [price]="item.price"
+            [category]="item.category"
+            [image]="item.image"
+            [description]="item.description"
+        ></app-product>
+    </div>
+</div>

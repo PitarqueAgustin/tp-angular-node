@@ -1,0 +1,6 @@
+.box-products{
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    row-gap: 20px;
+}

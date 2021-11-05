@@ -1,0 +1,71 @@
+.box-table{
+    margin: 20px auto;
+    background-color: rgb(31, 30, 34);
+    padding: 20px;
+    border-bottom: 2px solid #b212bf;
+    border-top: 2px solid #515151;
+    border-radius: 5px;
+    color: #eee;
+    text-align: center;
+    width: 60%;
+    max-height: 400px;
+}
+
+table{
+    width: 100%;
+}
+
+table thead{
+    color: #b212bf;
+}
+
+table thead tr th{
+    border-bottom: 1px solid #515151;
+}
+
+table tbody tr td{
+    padding: 5px;
+}
+
+table tbody a{
+    color: #aa4d4d;
+}
+
+.total{
+    border-top: 1px solid #515151;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.total h4{
+    color: #b212bf;
+}
+
+.box-btns{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    column-gap: 40px;
+}
+
+.box-btns button{
+    padding: 10px;
+    background-color: #b212bf;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: #eee;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.box-btns button:nth-child(1){
+    background-color: rgb(31, 30, 34);
+    border: 2px solid #b212bf;
+    color: #eee;
+}
+
+.box-btns button:hover{
+    opacity: .8;
+}
