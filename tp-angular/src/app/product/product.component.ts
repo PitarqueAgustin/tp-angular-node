@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
+import { Product } from '../response';
 
 @Component({
   selector: 'app-product',
@@ -7,13 +8,39 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 
 export class ProductComponent implements OnInit {
+  @Input() id: Number | undefined;
   @Input() name: String | undefined;
   @Input() price: String | undefined;
   @Input() category: String | undefined;
   @Input() image: String | undefined;
   @Input() description: String | undefined;
 
+  @Output() productEvent = new EventEmitter<Product>();
+
+  product : Product = {
+    id: undefined,
+    name: undefined,
+    price: undefined,
+    category: undefined,
+    image: undefined,
+    description: undefined,
+    quantity: 0
+  };
+
   ngOnInit(): void {
+    this.product = {
+      id: this.id,
+      name: this.name,
+      price: this.price,
+      category: this.category,
+      image: this.image,
+      description: this.description,
+      quantity: 1
+    };
+  }
+
+  sendProduct() {
+    this.productEvent.emit(this.product)
   }
 
   cart = document.querySelector('#cart');
@@ -22,5 +49,6 @@ export class ProductComponent implements OnInit {
     let count = this.cart?.getAttribute('data-content');
     count = (parseInt(count?count:"0") + 1).toString();
     this.cart?.setAttribute('data-content', count?count:"0");
+    this.sendProduct();
   }
 }
