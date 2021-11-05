@@ -1,5 +1,5 @@
 .card-product{
-    height: 450px;
+    height: 500px;
     width: 300px;
     padding: 10px;
     background-color: #515151;
@@ -19,6 +19,10 @@
 
 .card-product > div{
     color: #eee;
+    display: grid;
+    grid-template-rows: 20% 20% 40% 20%;
+    align-items: center;
+    padding: 10px;
 }
 
 .card-product > div > div{
@@ -31,4 +35,22 @@
     color: #b84dc2;
     font-size: 1.2em;
     /* text-decoration: underline 3px #b212bf; */
+}
+
+.card-product > div > div p{
+    overflow-y: scroll;
+}
+
+.card-product > div button{
+    border: 1px solid #b212bf;
+    background-color: #b212bf;
+    color: #eee;
+    padding: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: .9em;
+}
+
+.card-product > div button:hover{
+    opacity: .8;
 }

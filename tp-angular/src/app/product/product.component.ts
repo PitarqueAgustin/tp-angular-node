@@ -15,4 +15,12 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  cart = document.querySelector('#cart');
+
+  addCart = ()=>{
+    let count = this.cart?.getAttribute('data-content');
+    count = (parseInt(count?count:"0") + 1).toString();
+    this.cart?.setAttribute('data-content', count?count:"0");
+  }
 }
