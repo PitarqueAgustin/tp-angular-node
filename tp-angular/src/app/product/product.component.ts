@@ -8,7 +8,7 @@ import { Product } from '../response';
 })
 
 export class ProductComponent implements OnInit {
-  @Input() id: Number | undefined;
+  @Input() _id: String | undefined;
   @Input() name: String | undefined;
   @Input() price: String | undefined;
   @Input() category: String | undefined;
@@ -18,7 +18,7 @@ export class ProductComponent implements OnInit {
   @Output() productEvent = new EventEmitter<Product>();
 
   product : Product = {
-    id: undefined,
+    _id: undefined,
     name: undefined,
     price: undefined,
     category: undefined,
@@ -29,7 +29,7 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.product = {
-      id: this.id,
+      _id: this._id,
       name: this.name,
       price: this.price,
       category: this.category,
@@ -40,6 +40,7 @@ export class ProductComponent implements OnInit {
   }
 
   sendProduct() {
+    console.log(this.product)
     this.productEvent.emit(this.product)
   }
 

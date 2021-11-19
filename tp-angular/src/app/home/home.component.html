@@ -2,7 +2,7 @@
     <div *ngFor="let item of data">
         <app-product 
             (productEvent)=receiveProduct($event)
-            [id]="item.id"
+            [_id]="item._id"
             [name]="item.name"
             [price]="item.price"
             [category]="item.category"

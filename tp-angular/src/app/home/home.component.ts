@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   cart : Product[] = [];
 
-  constructor(protected router:Router, protected httpClient: HttpClient) { 
+  constructor(protected router:Router, protected httpClient: HttpClient) {
     console.log('viewdemo constructor');
   }
 
@@ -31,41 +31,40 @@ export class HomeComponent implements OnInit {
     this.getProducts();
   }
 
-  receiveProduct($event : Product) { 
+  receiveProduct($event : Product) {
     this.addProductInCart($event);
-
   }
 
   addProductInCart = (prod : Product)=>{
-    
-    let prodExists = this.cart.find(p=> p.id == prod.id);
+
+    let prodExists = this.cart.find(p=> p._id == prod._id);
 
     if(prodExists){
       let index = this.cart.indexOf(prodExists);
-      this.cart[index].quantity = this.cart[index].quantity.valueOf() + 1; 
+      this.cart[index].quantity = this.cart[index].quantity.valueOf() + 1;
     }else{
       this.cart.push(prod);
     }
-    
+
     window.localStorage.setItem("products", JSON.stringify(this.cart));
   }
 
   getProducts = ()=>{
 
     let res: Observable<Product[]> =
-        this.httpClient.get<Product[]>('http://localhost:4300/products')
+        this.httpClient.get<Product[]>('http://localhost:4300/api/products')
         .pipe(share());
         //.pipe(catchError(this.handleError));
-      
+
       res.subscribe(
           value=> {
             this.data = value;
             console.log('data',this.data)
-          }, 
-          error => { 
+          },
+          error => {
             console.log('ocurrio un error');
           }
       );
-  
+
   }
 }
