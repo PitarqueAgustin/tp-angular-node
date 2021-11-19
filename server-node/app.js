@@ -1,5 +1,6 @@
+require('dotenv').config(); //Permite manejar variables de entornos
 const express = require('express');
-const { mongoose } = require('./database');
+require('./database')
 const cors = require('cors');
 const app = express();
 

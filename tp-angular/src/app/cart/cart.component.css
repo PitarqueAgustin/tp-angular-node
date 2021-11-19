@@ -29,6 +29,7 @@ table tbody tr td{
 
 table tbody a{
     color: #aa4d4d;
+    cursor: pointer;
 }
 
 .total{

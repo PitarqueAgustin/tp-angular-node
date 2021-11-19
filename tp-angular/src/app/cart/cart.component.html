@@ -15,7 +15,7 @@
                 <td>{{item.category}}</td>
                 <td>${{item.price}}</td>
                 <td>{{item.quantity}}</td>
-                <td><a href="">Eliminar</a></td>
+                <td><a (click)="deleteProd(item.id)">Eliminar</a></td>
             </tr>
         </tbody>
     </table>

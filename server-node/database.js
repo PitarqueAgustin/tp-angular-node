@@ -1,13 +1,10 @@
 const mongoose = require('mongoose');
 
-const URI = 'mongodb+srv://pitarque:4PNkuAid3pncm6P@cluster0.bnf1r.mongodb.net/TW2?retryWrites=true&w=majority';
+const MONGODB_URL = process.env.MONGODB_URL;
 
-mongoose.connect(URI,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+mongoose.connect(MONGODB_URL,{
+    useUnifiedTopology: true,
+    useNewUrlParser: true
 })
-    .then(db => console.log('DB is connected'))
-    .catch(err => console.error(err));
-
-
-module.exports = mongoose;
+.then(db => console.log('Db is connected'))
+.catch(err => console.error(err)) 

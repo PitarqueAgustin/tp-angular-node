@@ -33,4 +33,18 @@ export class CartComponent implements OnInit {
     alert("No esta hecha esa funcionalidad :(");
   }
 
+  deleteProd = (idProd : number)=>{
+    let prodDelete = this.products.find((p: { id: number; })=> p.id == idProd);
+    let index = this.products.indexOf(prodDelete);
+    if(prodDelete.quantity > 1){
+      this.products[index].quantity = this.products[index].quantity - 1; 
+    }else{      
+      this.products.splice(index,1); 
+    }
+    let count = window.localStorage.getItem("cart");
+    window.localStorage.setItem("products", JSON.stringify(this.products));
+    window.localStorage.setItem("cart",count? (parseInt(count) - 1).toString() : "0");
+    window.location.href = "/cart";
+  }
+
 }
