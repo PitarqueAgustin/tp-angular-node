@@ -7,3 +7,9 @@ export interface Product{
     description: String | undefined,
     quantity: Number
 }
+
+export interface Ticket{
+    _id: String | undefined,
+    products: String[] | undefined,
+    total: String | undefined
+}

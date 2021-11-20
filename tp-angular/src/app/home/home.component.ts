@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { share, catchError } from 'rxjs/operators';
+import { HotToastService } from '@ngneat/hot-toast';
 
 //Import interface
 import { Product } from '../response';
@@ -23,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   cart : Product[] = [];
 
-  constructor(protected router:Router, protected httpClient: HttpClient) {
+  constructor(protected router:Router, protected httpClient: HttpClient, private toast: HotToastService) {
     console.log('viewdemo constructor');
   }
 
@@ -32,10 +33,16 @@ export class HomeComponent implements OnInit {
   }
 
   receiveProduct($event : Product) {
+    console.log('cart',this.cart);
     this.addProductInCart($event);
   }
 
   addProductInCart = (prod : Product)=>{
+
+    let cartExistent = window.localStorage.getItem("products");
+    let cartExistentArray : Product[] = JSON.parse(cartExistent?cartExistent:"[]");
+
+    this.cart = cartExistentArray;
 
     let prodExists = this.cart.find(p=> p._id == prod._id);
 
@@ -47,6 +54,11 @@ export class HomeComponent implements OnInit {
     }
 
     window.localStorage.setItem("products", JSON.stringify(this.cart));
+
+    this.toast.info(`Se agrego el producto ${prod.name} al carrito.`,{
+      duration: 2000,
+      position: 'top-center'
+    });
   }
 
   getProducts = ()=>{
@@ -59,7 +71,6 @@ export class HomeComponent implements OnInit {
       res.subscribe(
           value=> {
             this.data = value;
-            console.log('data',this.data)
           },
           error => {
             console.log('ocurrio un error');

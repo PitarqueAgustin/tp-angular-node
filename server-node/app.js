@@ -13,6 +13,7 @@ app.listen(4300, ()=>{
 app.use(cors());
 app.use(express.json());
 
-//Routes manager
-app.use('/api/' ,require('./controller/product.controller')); // api/ seria el prefijo
+//Routes manager - /api/ seria el prefijo
+app.use('/api/' ,require('./controller/product.controller'));
+app.use('/api/' ,require('./controller/ticket.controller'));
 

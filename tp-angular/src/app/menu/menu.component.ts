@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-menu',
@@ -10,8 +11,12 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    let url = window.location.href.replace("http://localhost:4200","");
+    this.setActiveLink(url);
     this.setCountCart();
   }
+
+  faShoppingCart = faShoppingCart;
 
   setActiveLink = (url: String) =>{
     let linkProd = document.querySelector('#linkProd');

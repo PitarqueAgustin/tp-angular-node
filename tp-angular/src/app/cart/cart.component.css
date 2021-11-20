@@ -70,3 +70,7 @@ table tbody a{
 .box-btns button:hover{
     opacity: .8;
 }
+
+.empty-prod fa-icon{
+    font-size: 1.6em;
+}

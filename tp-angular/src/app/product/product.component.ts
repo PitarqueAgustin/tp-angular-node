@@ -40,7 +40,6 @@ export class ProductComponent implements OnInit {
   }
 
   sendProduct() {
-    console.log(this.product)
     this.productEvent.emit(this.product)
   }
 

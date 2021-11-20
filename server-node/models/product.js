@@ -3,7 +3,11 @@ const { Schema } = mongoose;
 
 //Definimos el esquema de los datos
 const productsSchema = new Schema({
-    _id: {type: String, required: true},
+    _id: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        auto: true,
+    },
     name: {type: String, required: true},
     price: {type: String, required: true},
     category: {type: String, required:true},
