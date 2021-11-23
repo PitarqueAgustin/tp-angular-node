@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,12 +9,17 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  isLogged:boolean = false;
+
+  constructor(
+    private authService:AuthService
+  ) {}
 
   ngOnInit(): void {
     let url = window.location.href.replace("http://localhost:4200","");
     this.setActiveLink(url);
     this.setCountCart();
+    this.isLogged = this.authService.isLogged();
   }
 
   faShoppingCart = faShoppingCart;

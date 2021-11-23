@@ -12,10 +12,13 @@ import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const appRoutes: Routes = [
-  {path:'',component: HomeComponent},
-  {path:'cart',component: CartComponent}
+  {path:'',component: HomeComponent, canActivate: [AuthGuard]},
+  {path:'cart',component: CartComponent, canActivate: [AuthGuard]},
+  {path: 'login',component: LoginComponent}
 ];
 
 @NgModule({
@@ -24,7 +27,8 @@ const appRoutes: Routes = [
     MenuComponent,
     ProductComponent,
     HomeComponent,
-    CartComponent
+    CartComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
