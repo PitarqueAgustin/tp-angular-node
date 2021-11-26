@@ -1,1 +1,9 @@
-HOLA
+<div class="card-style">
+  <form [formGroup]="formLogin">
+    <p>Email</p>
+    <input id="email" formControlName="email" />
+    <p>Password</p>
+    <input id="password" formControlName="password" />
+  </form>
+  <button (click)="login()">Login</button>
+</div>

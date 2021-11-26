@@ -1,0 +1,12 @@
+.card-style{
+    height: 500px;
+    width: 300px;
+    padding: 10px;
+    background-color: #515151;
+    border-bottom: 2px solid #b212bf;
+    border-radius: 5px;
+    display: grid;
+    grid-template-rows: 60% 40%;
+    margin: auto;
+    margin-top: 20px;
+}

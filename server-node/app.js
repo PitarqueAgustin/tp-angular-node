@@ -16,4 +16,4 @@ app.use(express.json());
 //Routes manager - /api/ seria el prefijo
 app.use('/api/' ,require('./controller/product.controller'));
 app.use('/api/' ,require('./controller/ticket.controller'));
-
+app.use('/api/' ,require('./controller/cognito.controller'));

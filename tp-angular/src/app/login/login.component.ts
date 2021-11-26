@@ -1,29 +1,48 @@
-import { Component, OnInit, ViewChild, AfterViewInit  } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { share, catchError } from 'rxjs/operators';
-import { HotToastService } from '@ngneat/hot-toast';
-
-//Import interface
-import { Product } from '../response';
-
-//Import Component
-import { ProductComponent } from '../product/product.component';
+import { Component, OnInit } from '@angular/core';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  formLogin = new FormGroup({});
 
-  constructor() {
-    console.log('viewdemo constructor');
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    protected httpClient: HttpClient
+  ) {}
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.formLogin = this.formBuilder.group({
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+    });
   }
 
+  login() {
+    console.log('ejecutando signup');
+    this.httpClient
+      .post('http://localhost:4300/api/login', {
+        password: this.formLogin?.get('password')?.value,
+        email: this.formLogin?.get('email')?.value,
+      })
+      .subscribe((value: any) => {
+        alert(JSON.stringify(value));
+      },
+      (error) => {
+        console.log(error)
+      });
+  }
 }
