@@ -66,7 +66,8 @@ function Login(email, password) {
 
   var userData = {
     Username: email,
-    Pool: userPool,
+    // Pool: userPool,
+    Pool: new AmazonCognitoIdentity.CognitoUserPool(poolData),
   };
   
   
@@ -76,6 +77,7 @@ function Login(email, password) {
 
 
   var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+  cognitoUser.setAuthenticationFlowType("USER_PASSWORD_AUTH");
   cognitoUser.authenticateUser(authenticationDetails, {
     onSuccess: function (result) {
       console.log("access token + " + result.getAccessToken().getJwtToken());
