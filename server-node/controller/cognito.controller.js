@@ -17,8 +17,9 @@ router.get("/signup", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const token = await ServiceCognito.Login(email, password);
-  res.set("Content-Type", "application/json");
-  res.send(JSON.stringify(token));
+  console.log("------------------------------------------------------")
+  console.log(token)
+  res(token);
 });
 
 module.exports = router;

@@ -20,6 +20,7 @@ const app = express();
 app.use(express.json());
 
 function Login(email, password) {
+
   var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
     Username: email,
     Password: password,
@@ -28,7 +29,6 @@ function Login(email, password) {
   var userData = {
     Username: email,
     Pool: userPool,
-    // Pool: new AmazonCognitoIdentity.CognitoUserPool(poolData),
   };
   
   

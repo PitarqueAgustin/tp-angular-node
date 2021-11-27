@@ -10,6 +10,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { share } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -33,16 +35,19 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log('ejecutando signup');
-    this.httpClient
+    let res: Observable<any> = this.httpClient
       .post('http://localhost:4300/api/login', {
         password: this.formLogin?.get('password')?.value,
         email: this.formLogin?.get('email')?.value,
       })
-      .subscribe((value: any) => {
-        alert(JSON.stringify(value));
+      .pipe(share());
+    res.subscribe(
+      (value) => {
+        console.log(value);
       },
       (error) => {
-        console.log(error)
-      });
+        console.log(error);
+      }
+    );
   }
 }
