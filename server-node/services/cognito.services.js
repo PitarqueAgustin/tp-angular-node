@@ -19,45 +19,6 @@ const app = express();
 
 app.use(express.json());
 
-// app.post("/signup", (req, res) => {
-//   console.log("JSON:" + JSON.stringify(req.body));
-
-//   var attributeList = [];
-//   attributeList.push(
-//     new AmazonCognitoIdentity.CognitoUserAttribute({
-//       Name: "email",
-//       Value: req.body.email,
-//     })
-//   );
-
-//   /*attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"name",Value:"Prasad Jayashanka"}));
-//     attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"preferred_username",Value:"jay"}));
-//     attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"gender",Value:"male"}));
-//     attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"birthdate",Value:"1991-06-21"}));
-//     attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"address",Value:"CMB"}));
-//     attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"phone_number",Value:"+5412614324321"}));
-//     */
-
-//   userPool.signUp(
-//     req.body.username,
-//     req.body.password,
-//     attributeList,
-//     null,
-//     function (err, result) {
-//       if (err) {
-//         console.log(err);
-//         res.json(err);
-//         return;
-//       }
-//       cognitoUser = result.user;
-//       console.log("user name is " + cognitoUser.getUsername());
-//       res.json({
-//         bienvenido: `${cognitoUser.getUsername()}`,
-//       });
-//     }
-//   );
-// });
-
 function Login(email, password) {
   var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
     Username: email,
@@ -66,8 +27,8 @@ function Login(email, password) {
 
   var userData = {
     Username: email,
-    // Pool: userPool,
-    Pool: new AmazonCognitoIdentity.CognitoUserPool(poolData),
+    Pool: userPool,
+    // Pool: new AmazonCognitoIdentity.CognitoUserPool(poolData),
   };
   
   
@@ -83,6 +44,7 @@ function Login(email, password) {
       console.log("access token + " + result.getAccessToken().getJwtToken());
       console.log("id token + " + result.getIdToken().getJwtToken());
       console.log("refresh token + " + result.getRefreshToken().getToken());
+      return result.getAccessToken().getJwtToken();
     },
     onFailure: function (err) {
       console.log(err);
