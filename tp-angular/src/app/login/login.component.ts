@@ -11,7 +11,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { share } from 'rxjs/operators';
+import { HotToastService } from '@ngneat/hot-toast';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    protected httpClient: HttpClient
+    protected httpClient: HttpClient,
+    private toast: HotToastService,
+    protected router:Router
   ) {}
 
   ngOnInit(): void {
@@ -40,13 +43,26 @@ export class LoginComponent implements OnInit {
         password: this.formLogin?.get('password')?.value,
         email: this.formLogin?.get('email')?.value,
       })
-      .pipe(share());
+      // .pipe(share())
+      ;
     res.subscribe(
-      (value) => {
-        console.log(value);
+      (tokens) => {
+        localStorage.setItem("idToken", tokens.idToken);
+        localStorage.setItem("accesToken", tokens.accesToken);
+        this.toast.success( "Inicio de sesión exitoso", {
+          duration: 1300,
+          position: 'top-center'
+        });
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 1000);
       },
       (error) => {
-        console.log(error);
+        console.log(error.error.error);
+        this.toast.error( error.error.error, {
+          duration: 2000,
+          position: 'top-center'
+        });
       }
     );
   }

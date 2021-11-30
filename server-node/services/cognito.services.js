@@ -20,7 +20,6 @@ const app = express();
 app.use(express.json());
 
 function Login(email, password) {
-
   var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
     Username: email,
     Password: password,
@@ -30,25 +29,33 @@ function Login(email, password) {
     Username: email,
     Pool: userPool,
   };
-  
-  
-  console.log("------------------------------------------------------------------")
-  console.log(authenticationDetails)
-  console.log("------------------------------------------------------------------")
 
+  console.log(
+    "------------------------------------------------------------------"
+  );
+  console.log(authenticationDetails);
+  console.log(
+    "------------------------------------------------------------------"
+  );
 
   var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
   cognitoUser.setAuthenticationFlowType("USER_PASSWORD_AUTH");
-  cognitoUser.authenticateUser(authenticationDetails, {
-    onSuccess: function (result) {
-      console.log("access token + " + result.getAccessToken().getJwtToken());
-      console.log("id token + " + result.getIdToken().getJwtToken());
-      console.log("refresh token + " + result.getRefreshToken().getToken());
-      return result.getAccessToken().getJwtToken();
-    },
-    onFailure: function (err) {
-      console.log(err);
-    },
+  return new Promise((resolve, reject) => {
+    cognitoUser.authenticateUser(authenticationDetails, {
+      onSuccess: (result) => {
+        console.log("access token + " + result.getAccessToken().getJwtToken());
+        console.log("id token + " + result.getIdToken().getJwtToken());
+        console.log("refresh token + " + result.getRefreshToken().getToken());
+        resolve({
+          accesToken: result.getAccessToken().getJwtToken(),
+          idToken: result.getIdToken().getJwtToken(),
+        });
+      },
+      onFailure: (err) => {
+        console.log(err);
+        reject(err);
+      },
+    });
   });
 }
 

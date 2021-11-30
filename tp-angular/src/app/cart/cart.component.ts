@@ -44,31 +44,39 @@ export class CartComponent implements OnInit {
   }
 
   pay = ()=>{
-    let obj = {
-      products : this.products,
-      total: this.total
-    };
-    let res: Observable<Ticket[]> =
-        this.httpClient.post<Ticket[]>('http://localhost:4300/api/buy', obj)
-        .pipe(share());
-        //.pipe(catchError(this.handleError));
-      res.subscribe(
-          value=> {
-            this.toast.success('Compra completada!',{
-              duration: 3000,
-              position: 'bottom-right'
-            });
-            console.log('sucess',value);
-            this.deleteCart();
-          },
-          error => {
-            this.toast.error('Ocurrio un error',{
-              duration: 3000,
-              position: 'bottom-right'
-            });
-            console.error(error);
-          }
-      );
+    if(this.products.length > 0)
+    {
+      let obj = {
+        products : this.products,
+        total: this.total
+      };
+      let res: Observable<Ticket[]> =
+          this.httpClient.post<Ticket[]>('http://localhost:4300/api/buy', obj)
+          .pipe(share());
+          //.pipe(catchError(this.handleError));
+        res.subscribe(
+            value=> {
+              this.toast.success('Compra completada!',{
+                duration: 3000,
+                position: 'bottom-right'
+              });
+              console.log('sucess',value);
+              this.deleteCart();
+            },
+            error => {
+              this.toast.error('Ocurrio un error',{
+                duration: 3000,
+                position: 'bottom-right'
+              });
+              console.error(error);
+            }
+        );
+    }else{
+      this.toast.warning('Debe agregar al menos un producto',{
+        duration: 3000,
+        position: 'bottom-right'
+      });
+    }
   }
 
   deleteProd = (idProd : String)=>{

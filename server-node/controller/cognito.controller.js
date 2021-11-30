@@ -16,10 +16,15 @@ router.get("/signup", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  const token = await ServiceCognito.Login(email, password);
-  console.log("------------------------------------------------------")
-  console.log(token)
-  res(token);
+  let token = "";
+  try {
+    token = await ServiceCognito.Login(email, password);
+    res.json(token);
+  } catch (error) {
+    res.status(401).json({
+      error: "Usuario o contraseña incorrectos",
+    });
+  }
 });
 
 module.exports = router;
