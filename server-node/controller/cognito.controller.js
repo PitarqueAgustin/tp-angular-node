@@ -11,17 +11,13 @@ router.post("/signup", async (req, res) => {
   const { userData } = req.body;
   console.log(userData);
   try {
-    let response = ServiceCognito.RegisterUser(userData);
-    res.json({"res":response});
+    let response = await ServiceCognito.RegisterUser(userData);
+    res.json({ res: response });
   } catch (error) {
     res.status(401).json({
       error: "No se ha podido registrar el usuario",
     });
   }
-
-  //const products = await Products.find();
-
-  //res.json(products);
 });
 
 router.post("/login", async (req, res) => {

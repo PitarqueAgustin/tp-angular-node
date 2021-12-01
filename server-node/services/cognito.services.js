@@ -105,7 +105,7 @@ function RegisterUser(userData) {
   return new Promise((resolve, reject) => {
 
     userPool.signUp(
-      userData.username,
+      userData.userName,
       userData.password,
       attributeList,
       null,
@@ -113,12 +113,13 @@ function RegisterUser(userData) {
         if (err) {
           console.log(err);
           reject(err);
+        }else{
+          cognitoUser = result.user;
+          console.log("user name is " + cognitoUser.getUsername());
+          resolve({
+            "response":userData.name+", para completar tu registro, por favor verifica tu email"
+          });
         }
-        cognitoUser = result.user;
-        console.log("user name is " + cognitoUser.getUsername());
-        resolve({
-          "response":userData.name+", para completar tu registro, por favor verifica tu email"
-        });
       }
     );
   });
