@@ -47,3 +47,30 @@
   transition-duration: 300ms;
   background-color: #444444;
 }
+
+.register-option {
+  margin-top: 30px;
+  display: block;
+  text-align: right;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.register-option p {
+  color: #fff;
+  margin-right: 10px;
+}
+
+.register-option a {
+  margin-top: 10px;
+  color: #bd28c9;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition-duration: 300ms;
+}
+
+.register-option a:hover{
+  transition-duration: 600ms;
+  color: #d662df;
+}

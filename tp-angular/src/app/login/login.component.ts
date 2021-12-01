@@ -36,6 +36,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  goToRegistration = () =>{
+    this.router.navigate(['/registration']);
+  } 
+
   login() {
     console.log('ejecutando signup');
     let res: Observable<any> = this.httpClient

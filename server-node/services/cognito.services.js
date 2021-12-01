@@ -30,22 +30,11 @@ function Login(email, password) {
     Pool: userPool,
   };
 
-  console.log(
-    "------------------------------------------------------------------"
-  );
-  console.log(authenticationDetails);
-  console.log(
-    "------------------------------------------------------------------"
-  );
-
   var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
   cognitoUser.setAuthenticationFlowType("USER_PASSWORD_AUTH");
   return new Promise((resolve, reject) => {
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: (result) => {
-        console.log("access token + " + result.getAccessToken().getJwtToken());
-        console.log("id token + " + result.getIdToken().getJwtToken());
-        console.log("refresh token + " + result.getRefreshToken().getToken());
         resolve({
           accesToken: result.getAccessToken().getJwtToken(),
           idToken: result.getIdToken().getJwtToken(),
@@ -59,66 +48,81 @@ function Login(email, password) {
   });
 }
 
-function RegisterUser() {
+function RegisterUser(userData) {
   var attributeList = [];
   attributeList.push(
     new AmazonCognitoIdentity.CognitoUserAttribute({
       Name: "name",
-      Value: "Prasad Jayashanka",
+      Value: userData.name,
     })
   );
   attributeList.push(
     new AmazonCognitoIdentity.CognitoUserAttribute({
       Name: "preferred_username",
-      Value: "jay",
+      Value: userData.username,
     })
   );
   attributeList.push(
     new AmazonCognitoIdentity.CognitoUserAttribute({
       Name: "gender",
-      Value: "male",
+      Value: userData.gender,
     })
   );
   attributeList.push(
     new AmazonCognitoIdentity.CognitoUserAttribute({
       Name: "birthdate",
-      Value: "1991-06-21",
+      Value: userData.birthdate,
+      // Value: "1991-06-21",
     })
   );
   attributeList.push(
     new AmazonCognitoIdentity.CognitoUserAttribute({
       Name: "address",
-      Value: "CMB",
+      Value: userData.address,
     })
   );
   attributeList.push(
     new AmazonCognitoIdentity.CognitoUserAttribute({
       Name: "email",
-      Value: "asd@gmail.com",
+      Value: userData.email,
     })
   );
   attributeList.push(
     new AmazonCognitoIdentity.CognitoUserAttribute({
       Name: "phone_number",
-      Value: "+5412614324321",
+      Value: userData.phone_number,
     })
   );
   //attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"custom:scope",Value:"admin"}));
 
-  userPool.signUp(
-    "Demian",
-    "User123456!",
-    attributeList,
-    null,
-    function (err, result) {
-      if (err) {
-        console.log(err);
-        return;
+  var userInfo = {
+    Username: userData.email,
+    Pool: userPool,
+  };
+
+  var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userInfo);
+
+  return new Promise((resolve, reject) => {
+
+    userPool.signUp(
+      userData.username,
+      userData.password,
+      attributeList,
+      null,
+      function (err, result) {
+        if (err) {
+          console.log(err);
+          reject(err);
+        }
+        cognitoUser = result.user;
+        console.log("user name is " + cognitoUser.getUsername());
+        resolve({
+          "response":userData.name+", para completar tu registro, por favor verifica tu email"
+        });
       }
-      cognitoUser = result.user;
-      console.log("user name is " + cognitoUser.getUsername());
-    }
-  );
+    );
+  });
+
 }
 
 module.exports.Login = Login;

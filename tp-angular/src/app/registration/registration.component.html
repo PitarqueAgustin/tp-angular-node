@@ -1,0 +1,24 @@
+<div class="card-style">
+    <h2>Registro</h2>
+    <form [formGroup]="formRegistration">
+      <p>Nombre completo</p>
+      <input id="name" formControlName="name" />
+      <p>Nombre de usuario</p>
+      <input id="userName" formControlName="userName" />
+      <p>Género</p>
+      <input id="gender" formControlName="gender" />
+      <p>Fecha de nacimiento</p>
+      <!-- año mes dia -->
+      <input id="birthdate" formControlName="birthdate" />
+      <p>Dirección</p>
+      <input id="address" formControlName="address" />
+      <p>Número de telefono</p>
+      <input id="phone_number" formControlName="phone_number" />
+      <p>Email</p>
+      <input id="email" formControlName="email" />
+      <p>Password</p>
+      <input id="password" formControlName="password" />
+    </form>
+    <button (click)="register()">Registrarse</button>
+  </div>
+  

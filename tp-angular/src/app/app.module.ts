@@ -15,11 +15,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guard/auth.guard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Auth2Guard } from './guard/auth2.guard';
+import { RegistrationComponent } from './registration/registration.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [Auth2Guard] },
+  { path: 'registration', component: RegistrationComponent, canActivate: [Auth2Guard] },
 ];
 
 @NgModule({
@@ -30,6 +33,7 @@ const appRoutes: Routes = [
     HomeComponent,
     CartComponent,
     LoginComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,

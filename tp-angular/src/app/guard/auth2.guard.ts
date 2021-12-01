@@ -5,7 +5,7 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class Auth2Guard implements CanActivate {
 
   constructor(private router:Router, private authService:AuthService){}
 
@@ -13,10 +13,8 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):  boolean {
 
-    if (!this.authService.isLogged()) {
-      // Si la hora es mayor o igual redireccionamos al homeComponent
-      this.router.navigate(['login']);
-      // Si devolvemos FALSE no de permitirá el acceso
+    if (this.authService.isLogged()) {
+      this.router.navigate(['/']);
       return false;
     }
 
