@@ -38,7 +38,6 @@
     border-radius: 5px;
     text-align: center;
     margin: 0 auto;
-    margin-top: 50px;
     display: block;
     cursor: pointer;
   }
@@ -74,4 +73,10 @@
     transition-duration: 600ms;
     color: #d662df;
   }
-  
+
+  .buttons-container{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

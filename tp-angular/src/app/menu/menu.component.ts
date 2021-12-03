@@ -17,7 +17,7 @@ export class MenuComponent implements OnInit {
     let url = window.location.href.replace('http://localhost:4200', '');
     this.setActiveLink(url);
     this.setCountCart();
-    this.isLogged = this.authService.isLogged();
+    this.authService.isLogged$.subscribe((state) => this.isLogged=state);
   }
 
   faShoppingCart = faShoppingCart;
@@ -48,6 +48,7 @@ export class MenuComponent implements OnInit {
   logOut = () => {
     localStorage.removeItem('accesToken');
     localStorage.removeItem('idToken');
+    localStorage.removeItem('products');
     setTimeout(() => {
       this.router.navigate(['/']);
     }, 1000);

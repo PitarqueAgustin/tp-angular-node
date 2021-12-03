@@ -63,27 +63,29 @@ export class RegistrationComponent implements OnInit {
       (tokens) => {
         console.log("Llega res")
         console.log(tokens)
-      });
-    //     localStorage.setItem("idToken", tokens.idToken);
-    //     localStorage.setItem("accesToken", tokens.accesToken);
-    //     this.toast.success( "Inicio de sesión exitoso", {
-    //       duration: 1300,
-    //       position: 'top-center'
-    //     });
-    //     setTimeout(() => {
-    //       this.router.navigate(['/']);
-    //     }, 1000);
-    //   },
-    //   (error) => {
-    //     console.log(error.error.error);
-    //     this.toast.error( error.error.error, {
-    //       duration: 2000,
-    //       position: 'top-center'
-    //     });
-    //   }
-    // );
+        this.toast.success( "Inicio de sesión exitoso", {
+          duration: 1300,
+          position: 'top-center'
+        });
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 1000);
+
+      },
+      (error) => {
+        console.log(error.error.error);
+        this.toast.error( error.error.error, {
+          duration: 2000,
+          position: 'top-center'
+        });
+      }
+    );
 
     console.log(userData);
     return userData;
+  }
+
+  goToLogin = () => {
+    this.router.navigate(['/login']);
   }
 }

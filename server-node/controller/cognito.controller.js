@@ -4,9 +4,6 @@ const router = express.Router();
 //Traigo la capa de servicio
 const ServiceCognito = require("../services/cognito.services");
 
-//Traigo los modelos
-//const Products = require('../models/product');
-
 router.post("/signup", async (req, res) => {
   const { userData } = req.body;
   console.log(userData);
@@ -28,7 +25,7 @@ router.post("/login", async (req, res) => {
     res.json(token);
   } catch (error) {
     res.status(401).json({
-      error: "Usuario o contraseña incorrectos",
+      error: error.code === "UserNotConfirmedException" ? "Por favor confirme su usuario a traves de su email" :"Usuario o contraseña incorrectos",
     });
   }
 });
