@@ -53,4 +53,8 @@ export class MenuComponent implements OnInit {
       this.router.navigate(['/']);
     }, 1000);
   };
+
+  goHome = () => {
+    this.router.navigate(['/']);
+  }
 }

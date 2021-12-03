@@ -1,5 +1,5 @@
 <nav>
-  <img src="./assets/images/logopng.png">
+  <img src="./assets/images/logopng.png" (click)="goHome()">
   <ul *ngIf="isLogged">
     <li id="cart" data-content="0"><a routerLink="/cart" (click)="setActiveLink('/cart')" id="linkCart"><fa-icon [icon]="faShoppingCart"></fa-icon></a></li>
     <li><a routerLink="/" (click)="setActiveLink('/')" id="linkProd" class="activo">Productos</a></li>
