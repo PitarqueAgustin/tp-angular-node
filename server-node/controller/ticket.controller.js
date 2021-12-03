@@ -1,12 +1,12 @@
 const express = require('express');
-const { isValidObjectId } = require('mongoose');
+// const { isValidObjectId } = require('mongoose');
 const router = express.Router();
 
 
 //Traigo los modelos
 const Tickets = require('../models/ticket');
 
-router.post('/buy', async (req, res)=>{
+router.post('/buy', (req, res)=>{
 
     const { products, total } = req.body;
 
@@ -16,7 +16,7 @@ router.post('/buy', async (req, res)=>{
     });
 
     try{
-        await ticket.save();
+        ticket.save();
         res.json({Result: 'Success ticket'});
     }catch(err){
         res.json({Result: err});

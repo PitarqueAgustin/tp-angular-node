@@ -12,7 +12,8 @@ router.post("/signup", async (req, res) => {
     res.json({ res: response });
   } catch (error) {
     res.status(401).json({
-      error: "No se ha podido registrar el usuario",
+      // error: "No se ha podido registrar el usuario",
+      error: ServiceCognito.ManagerError(error.code)
     });
   }
 });

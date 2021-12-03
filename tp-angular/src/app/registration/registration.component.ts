@@ -18,7 +18,7 @@ import { Observable } from 'rxjs';
 export class RegistrationComponent implements OnInit {
   formRegistration = new FormGroup({});
 
-  constructor(    
+  constructor(
     private formBuilder: FormBuilder,
     protected httpClient: HttpClient,
     private toast: HotToastService,
@@ -39,8 +39,6 @@ export class RegistrationComponent implements OnInit {
 
 
   register = () =>{
-    
-    console.log('ejecutando register');
 
     var userData = {
       "name": this.formRegistration?.get('name')?.value,
@@ -61,8 +59,6 @@ export class RegistrationComponent implements OnInit {
       ;
     res.subscribe(
       (res) => {
-        console.log("Llega res")
-        console.log(res)
         this.toast.success( "Registro exitoso, por favor confirme su email", {
           duration: 5000,
           position: 'top-center'
@@ -72,7 +68,7 @@ export class RegistrationComponent implements OnInit {
         }, 1000);
       },
       (error) => {
-        console.log(error.error.error);
+        console.log('error res',error);
         this.toast.error( error.error.error, {
           duration: 2000,
           position: 'top-center'

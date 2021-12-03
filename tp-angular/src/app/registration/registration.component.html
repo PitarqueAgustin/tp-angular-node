@@ -2,37 +2,37 @@
   <h2>Registro</h2>
   <form [formGroup]="formRegistration" (keyup.enter)="register()">
     <div class="one-line">
-      <p>Nombre completo</p>
+      <p>Nombre y Apellido</p>
       <input id="name" formControlName="name" />
     </div>
     <div class="one-line">
       <p>Nombre de usuario</p>
       <input id="userName" formControlName="userName" />
     </div>
-    <div class="one-three first">
+    <!-- <div class="one-three first">
       <p>Género</p>
       <input id="gender" formControlName="gender" />
     </div>
     <div class="two-three second">
       <p>Fecha de nacimiento</p>
-      <!-- año mes dia -->
+       año mes dia
       <input id="birthdate" formControlName="birthdate" />
-    </div>
+    </div> -->
     <div class="one-line">
       <p>Dirección</p>
       <input id="address" formControlName="address" />
     </div>
-    <div class="one-line">
+    <!-- <div class="one-line">
       <p>Número de telefono</p>
       <input id="phone_number" formControlName="phone_number" />
-      <!-- +5412614324321 -->
-    </div>
+      +5412614324321
+    </div> -->
     <div class="one-line">
       <p>Email</p>
       <input id="email" formControlName="email" />
     </div>
     <div class="one-line">
-      <p>Password</p>
+      <p>Contraseña</p>
       <input id="password" formControlName="password" />
     </div>
   </form>

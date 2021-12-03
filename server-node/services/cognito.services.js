@@ -8,9 +8,12 @@ global.fetch = require("node-fetch");
 const express = require("express");
 
 const poolData = {
-  UserPoolId: "us-east-2_ksXTVRnns", // Your user pool id here
-  ClientId: "eq76lqatr9t6qpnuijasr1rik", // Your client id here
+  // UserPoolId: "us-east-2_ksXTVRnns", 
+  UserPoolId: "us-east-2_AWVW0w7Cw", // Your user pool id here
+  // ClientId: "eq76lqatr9t6qpnuijasr1rik", 
+  ClientId: "5l6hj749fmli41r35111lv9j2p", // Your client id here
 };
+
 const pool_region = "us-east-2";
 
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
@@ -62,19 +65,19 @@ function RegisterUser(userData) {
       Value: userData.username,
     })
   );
-  attributeList.push(
-    new AmazonCognitoIdentity.CognitoUserAttribute({
-      Name: "gender",
-      Value: userData.gender,
-    })
-  );
-  attributeList.push(
-    new AmazonCognitoIdentity.CognitoUserAttribute({
-      Name: "birthdate",
-      Value: userData.birthdate,
-      // Value: "1991-06-21",
-    })
-  );
+  // attributeList.push(
+  //   new AmazonCognitoIdentity.CognitoUserAttribute({
+  //     Name: "gender",
+  //     Value: userData.gender,
+  //   })
+  // );
+  // attributeList.push(
+  //   new AmazonCognitoIdentity.CognitoUserAttribute({
+  //     Name: "birthdate",
+  //     Value: userData.birthdate,
+  //     // Value: "1991-06-21",
+  //   })
+  // );
   attributeList.push(
     new AmazonCognitoIdentity.CognitoUserAttribute({
       Name: "address",
@@ -87,12 +90,12 @@ function RegisterUser(userData) {
       Value: userData.email,
     })
   );
-  attributeList.push(
-    new AmazonCognitoIdentity.CognitoUserAttribute({
-      Name: "phone_number",
-      Value: userData.phone_number,
-    })
-  );
+  // attributeList.push(
+  //   new AmazonCognitoIdentity.CognitoUserAttribute({
+  //     Name: "phone_number",
+  //     Value: userData.phone_number,
+  //   })
+  // );
   //attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"custom:scope",Value:"admin"}));
 
   var userInfo = {
@@ -126,5 +129,18 @@ function RegisterUser(userData) {
 
 }
 
+function ManagerError(exMessage)
+{
+  if(exMessage.includes("UsernameExistsException")){
+    return "El nombre de usuario ya existe";
+  }
+  else if(exMessage.includes("InvalidParameterException")){
+    return "Complete todos los campos obligatorios, revise la contraseña y el email.";
+  }else{
+    return "Ocurrió un error al intentar registrarse";
+  }
+}
+
 module.exports.Login = Login;
 module.exports.RegisterUser = RegisterUser;
+module.exports.ManagerError = ManagerError;
