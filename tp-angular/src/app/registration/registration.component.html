@@ -1,6 +1,6 @@
 <div class="card-style">
   <h2>Registro</h2>
-  <form [formGroup]="formRegistration">
+  <form [formGroup]="formRegistration" (keyup.enter)="register()">
     <div class="one-line">
       <p>Nombre completo</p>
       <input id="name" formControlName="name" />
@@ -37,7 +37,7 @@
     </div>
   </form>
   <div class="buttons-container">
-    <button (click)="register()">Registrarse</button>
+    <button type="submit" (click)="register()">Registrarse</button>
     <button (click)="goToLogin()">Volver</button>
   </div>
 </div>

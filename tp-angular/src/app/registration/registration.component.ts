@@ -60,17 +60,16 @@ export class RegistrationComponent implements OnInit {
       // .pipe(share())
       ;
     res.subscribe(
-      (tokens) => {
+      (res) => {
         console.log("Llega res")
-        console.log(tokens)
-        this.toast.success( "Inicio de sesión exitoso", {
-          duration: 1300,
+        console.log(res)
+        this.toast.success( "Registro exitoso, por favor confirme su email", {
+          duration: 5000,
           position: 'top-center'
         });
         setTimeout(() => {
           this.router.navigate(['/']);
         }, 1000);
-
       },
       (error) => {
         console.log(error.error.error);
