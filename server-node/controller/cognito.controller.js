@@ -4,18 +4,38 @@ const router = express.Router();
 //Traigo la capa de servicio
 const ServiceCognito = require("../services/cognito.services");
 
-router.post("/signup", async (req, res) => {
+//Traigo los modelos
+const Users = require('../models/user');
+
+router.post("/signup", (req, res) => {
   const { userData } = req.body;
   console.log(userData);
-  try {
-    let response = await ServiceCognito.RegisterUser(userData);
-    res.json({ res: response });
-  } catch (error) {
-    res.status(401).json({
-      // error: "No se ha podido registrar el usuario",
-      error: ServiceCognito.ManagerError(error.code)
-    });
-  }
+
+
+  Users.findOne({'email': userData.email}, async (err,docs)=>{ 
+    if(docs != null){
+      res.status(401).json({
+          error: 'Email ya registrado'
+      });
+    }else{
+      try {
+        let response = await ServiceCognito.RegisterUser(userData);
+        const user = new Users({
+          email: userData.email
+        });
+        user.save();
+        res.json({ res: response });
+      } catch (error) {
+        res.status(401).json({
+          // error: "No se ha podido registrar el usuario",
+          error: ServiceCognito.ManagerError(error.code)
+        });
+      }
+    }
+
+  });
+
+
 });
 
 router.post("/login", async (req, res) => {
