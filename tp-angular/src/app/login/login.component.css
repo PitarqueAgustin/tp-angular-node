@@ -74,3 +74,22 @@
   transition-duration: 600ms;
   color: #d662df;
 }
+
+.input-and-labe-container{
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.errors-container {
+  position: absolute;
+  left: 0px;
+  bottom: -12px;
+  font-size: 85%;
+  padding: 5px;
+  color: #c9282f;
+  width: 100%;
+}
+
+.input-and-labe-container p{
+  margin-bottom: 10px;
+}

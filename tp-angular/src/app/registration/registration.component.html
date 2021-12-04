@@ -3,11 +3,27 @@
   <form [formGroup]="formRegistration" (keyup.enter)="register()">
     <div class="one-line">
       <p>Nombre y Apellido</p>
-      <input id="name" formControlName="name" />
+      <input id="name" formControlName="name" type="text" required/>
+      <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="errors-container">
+        <div *ngIf="name?.errors?.required" class="errors-container">
+            Este campo es obligatorio
+        </div>  
+        <div *ngIf="name?.errors?.['minlength']" class="errors-container">
+            Debe tener un minimo de 2 caracteres
+        </div> 
+      </div>
     </div>
     <div class="one-line">
       <p>Nombre de usuario</p>
-      <input id="userName" formControlName="userName" />
+      <input id="userName" formControlName="userName" type="text" required/>
+      <div *ngIf="userName?.invalid && (userName?.dirty || userName?.touched)" class="errors-container">
+        <div *ngIf="userName?.errors?.required" class="errors-container">
+            Este campo es obligatorio
+        </div>  
+        <div *ngIf="userName?.errors?.['minlength']" class="errors-container">
+            Debe tener un minimo de 2 caracteres
+        </div> 
+      </div>
     </div>
     <!-- <div class="one-three first">
       <p>Género</p>
@@ -20,7 +36,15 @@
     </div> -->
     <div class="one-line">
       <p>Dirección</p>
-      <input id="address" formControlName="address" />
+      <input id="address" formControlName="address" type="text" required/>
+      <div *ngIf="address?.invalid && (address?.dirty || address?.touched)" class="errors-container">
+        <div *ngIf="address?.errors?.required" class="errors-container">
+            Este campo es obligatorio
+        </div>  
+        <div *ngIf="address?.errors?.['minlength']" class="errors-container">
+            Debe tener un minimo de 2 caracteres
+        </div> 
+      </div>
     </div>
     <!-- <div class="one-line">
       <p>Número de telefono</p>
@@ -29,11 +53,27 @@
     </div> -->
     <div class="one-line">
       <p>Email</p>
-      <input id="email" formControlName="email" />
+      <input id="email" formControlName="email" type="email" required/>
+      <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="errors-container">
+        <div *ngIf="email?.errors?.required" class="errors-container">
+            Este campo es obligatorio
+        </div>  
+        <div *ngIf="email?.errors?.['pattern']" class="errors-container">
+            Debe tener formato valido. Ej: un@mail.com
+        </div> 
+      </div>
     </div>
     <div class="one-line">
       <p>Contraseña</p>
-      <input id="password" formControlName="password" />
+      <input id="password" formControlName="password" type="password" required/>
+      <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="errors-container">
+        <div *ngIf="password?.errors?.required" class="errors-container">
+            Este campo es obligatorio
+        </div>  
+        <div *ngIf="password?.errors?.['pattern']" class="errors-container">
+            Debe tener minimo 8 caracteres, una mayuscula, una minuscula, y un caracter especial
+        </div> 
+      </div>
     </div>
   </form>
   <div class="buttons-container">

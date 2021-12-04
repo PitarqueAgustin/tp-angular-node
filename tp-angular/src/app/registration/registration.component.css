@@ -109,3 +109,9 @@
 .second {
   margin-left: 1%;
 }
+
+.errors-container {
+  font-size: 85%;
+  padding: 5px;
+  color: #c9282f;
+}

@@ -1,10 +1,25 @@
 <div class="card-style">
   <h2>Inicio de sesión</h2>
   <form [formGroup]="formLogin"  (keyup.enter)="login()">
-    <p>Email o Usuario</p>
-    <input id="email" formControlName="email" />
-    <p>Password</p>
-    <input id="password" formControlName="password" />
+    <div class="input-and-labe-container">
+      <p>Email o Usuario</p>
+      <input id="email" formControlName="email" />
+      <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="errors-container">
+        <div *ngIf="email?.errors?.required" class="errors-container">
+            Este campo es obligatorio
+        </div>   
+      </div>
+    </div>
+    <div class="input-and-labe-container">
+      <p>Password</p>
+      <input id="password" formControlName="password" />
+      <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="errors-container">
+        <div *ngIf="password?.errors?.required" class="errors-container">
+            Este campo es obligatorio
+        </div>  
+      </div>
+    </div>
+    
   </form>
   <div class="register-option">
     <p>¿Aún no tienes una cuenta?</p>
