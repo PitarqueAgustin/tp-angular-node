@@ -12,7 +12,7 @@
     </div>
     <div class="input-and-labe-container">
       <p>Password</p>
-      <input id="password" formControlName="password" />
+      <input type="password" id="password" formControlName="password" />
       <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="errors-container">
         <div *ngIf="password?.errors?.required" class="errors-container">
             Este campo es obligatorio

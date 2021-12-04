@@ -26,7 +26,7 @@ export class RegistrationComponent implements OnInit {
   ) {}
 
   emailPattern: any = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  passwordPattern: any = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  passwordPattern: any = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   ngOnInit(): void {
     this.formRegistration = this.formBuilder.group({
